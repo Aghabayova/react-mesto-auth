@@ -32,15 +32,15 @@ function App() {
     link: ''
   });
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [loggedInEmail, setLoggedInEmail] = React.useState('');
-  const [userData, setUserData] = React.useState(null);
-  const [loginState, setLoginState]= React.useState(true);
+  const [email, setEmail] = React.useState('');
+  //const [loggedInEmail, setLoggedInEmail] = React.useState('');
+  const [loginState, setLoginState] = React.useState(true);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
   const [isRegisterSuccess, setIsRegisterSuccess] = React.useState(false);
 
   const history = useHistory();
 
-
+  // Записать токен
   function tokenCheck() {
     // если у пользователя есть токен в localStorage,
     // эта функция проверит валидность токена
@@ -49,25 +49,34 @@ function App() {
       // проверим токен
       auth.getContent(jwt).then((res) => {
         if (res) {
-          setUserData({
-            id:res.data._id,
+          setEmail({
+            id: res.data._id,
             email: res.data.email
           });
           setLoggedIn(true);
           history.push('/');
         }
       })
-      .catch((err) => {console.log(err)})
+        .catch((err) => { console.log(err) })
     }
   }
 
-  //React.useEffect(() => {
-    //tokenCheck();
-    //history.push('/cards');
-  //}, []);
+  // Проверить токен
+  React.useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      auth.getContent(jwt)
+        .then((res) => {
+          setLoggedIn(true);
+          setEmail(res.data.email);
+          history.push('/');
+        })
+        .catch(err => console.log(err));
+    }
+  }, [history]);
 
   // Регистрация
-  function handleRegister({email, password}) {
+  function handleRegister({ email, password }) {
     setIsLoading(true);
     return auth.register(email, password)
       .then((res) => {
@@ -83,18 +92,18 @@ function App() {
   function handleLogin({ email, password }) {
     setIsLoading(true);
     return auth.authorise(email, password)
-    .then((res) => {
-      if (res && res.token) {
-        setLoggedIn(true);
-        tokenCheck();
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      setIsLoading(false);
-    })
+      .then((res) => {
+        if (res && res.token) {
+          setLoggedIn(true);
+          tokenCheck();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
   }
 
   function handleLogOut() {
@@ -103,7 +112,7 @@ function App() {
     history.push('/sign-in');
   }
 
-  function handleloginState(){
+  function handleloginState() {
     setLoginState(false);
   }
 
@@ -120,21 +129,13 @@ function App() {
   }, []);
 
 
-  /* componentDidMount() {
-    // настало время проверить токен
-      this.tokenCheck();
-    };
-    */
-
-  function handleRegisterSuccess(state){
+  function handleRegisterSuccess(state) {
     setIsInfoTooltipPopupOpen(true);
     setIsRegisterSuccess(state);
 
   }
 
 
-
-  
   //обработчики открытия попапов
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -236,32 +237,32 @@ function App() {
 
       <div className="page">
         <Header
-          loggedInEmail={loggedInEmail}
+          loggedInEmail={email}
           loginState={loginState}
           loggedIn={loggedIn}
-          signOut={handleLogOut} 
+          signOut={handleLogOut}
           handleloginState={handleloginState} />
-          <Switch>
-            <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}
-              onEditProfile={handleEditProfileClick}
-              onAddPlace={handleAddPlaceClick}
-              onEditAvatar={handleEditAvatarClick}
-              onCardClick={handleCardClick}
-              cards={cards}
-              onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
-            />
-            <Route path='/sign-in'>
-              <Login onLogin={handleLogin} />
-            </Route>
-            <Route path='/sign-up'>
-              <Register onRegister={handleRegister}
+        <Switch>
+          <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}
+            onEditProfile={handleEditProfileClick}
+            onAddPlace={handleAddPlaceClick}
+            onEditAvatar={handleEditAvatarClick}
+            onCardClick={handleCardClick}
+            cards={cards}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+          />
+          <Route path='/sign-in'>
+            <Login onLogin={handleLogin} />
+          </Route>
+          <Route path='/sign-up'>
+            <Register onRegister={handleRegister}
               onConfirm={handleRegisterSuccess} />
-            </Route>
-            <Route>
-              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
-            </Route>
-          </Switch>
+          </Route>
+          <Route>
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+          </Route>
+        </Switch>
 
         <DeleteConfirmPopup isOpen={isDeleteCardPopupOpen} onClose={closeAllPopups} onConfirmClick={handleCardDeleteSubmit} />
 

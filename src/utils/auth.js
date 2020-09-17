@@ -9,7 +9,7 @@ export const authorise = (email, password) => {
     },
     body: JSON.stringify({ email, password })
   })
-    .then(res => {
+    .then((res) => {
       try {
         if (res.status === 200) {
           return res.json();
@@ -26,7 +26,7 @@ export const authorise = (email, password) => {
         return e;
       }
     })
-    .then(data => {
+    .then((data) => {
       if (data.token) {
         localStorage.setItem('jwt', data.token);
         return data;
@@ -66,6 +66,7 @@ export const checkToken = (token) => {
     .then(res => res.json())
     .then(data => data)
 }
+
 export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',

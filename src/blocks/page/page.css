@@ -4,8 +4,5 @@
     text-rendering: optimizeLegibility;
     background-color: #000000;
     color: white;
-    display: grid;
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
 }
