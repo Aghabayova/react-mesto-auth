@@ -1,0 +1,14 @@
+.card__like-btn_active{
+    background-image: url(../../../../images/like-active.svg);
+    height: 18px;
+    background-size: cover;
+    width: 22px;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    -webkit-transition: opacity .2s ease-out;
+    -o-transition: opacity .2s ease-out;
+    transition: opacity .2s ease-out;
+    padding: 0;
+    outline: 0;
+}

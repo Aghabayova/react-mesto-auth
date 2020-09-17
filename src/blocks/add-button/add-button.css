@@ -1,0 +1,28 @@
+.add-button{
+   width: 150px;
+   height: 50px;
+   background-image: url(../../images/add-button.svg);
+   background-color: black;
+   background-size: cover;
+   margin-left: auto;
+   cursor: pointer;
+   outline: none;
+   border: none;
+   -webkit-transition: opacity .2s ease-out;
+   -o-transition: opacity .2s ease-out;
+   transition: opacity .2s ease-out;
+   
+}
+.add-button:hover{
+
+   opacity: 0.6;
+}
+@media (max-width: 750px){
+   .add-button{
+      margin: 0 auto;
+      width: 282px;
+      height: 50px;
+      background-image: url(../../images/add-button2.svg);
+      margin-top: 35px;
+   }
+}

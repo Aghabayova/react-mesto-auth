@@ -1,0 +1,31 @@
+.profile__box {
+    position: relative;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-right: 40px;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+}
+
+.profile__box:hover .profile__avatar{
+    opacity: .2;
+    transition: opacity .2s ease-out;
+}
+.profile__box:hover .profile__pencil{
+    display: block;
+}
+
+.profile__pencil {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    right: 0;
+    left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+    width: 30px;
+  }

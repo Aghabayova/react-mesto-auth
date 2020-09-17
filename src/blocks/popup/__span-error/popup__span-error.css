@@ -1,0 +1,10 @@
+.popup__span-error{
+    font-size: 12px;
+    line-height: 15px;
+    opacity: 0;
+    max-width: 358px;
+    margin: 0 auto;
+    height: 10px;
+    color: red;
+    display: block;
+}

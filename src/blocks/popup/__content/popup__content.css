@@ -1,0 +1,29 @@
+.popup__content{
+    width: 430px;
+    margin: auto;
+    background-color: #ffffff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-radius: 10px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+    -webkit-box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+
+    
+}
+
+@media (max-width: 500px){
+    .popup__content{
+        max-width: 340px;
+    }
+}
+@media (max-width: 400px){
+    .popup__content{
+        max-width: 240px;
+    }
+}

@@ -1,0 +1,26 @@
+.card__trash{
+    
+    background-color: transparent;
+    background-image: url('../../../images/trash-icon.svg');
+    background-size: 18px 19px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 18px;
+    right: 15px;
+   
+    
+    width: 18px;
+    height: 19px;
+    border: 0;
+    outline: 0;
+  
+
+}
+.card__trash:hover {
+    cursor: pointer;
+    opacity: .6;
+    -webkit-transition: .2s linear ease-in-out;
+    -o-transition: .2s linear ease-in-out;
+    transition: .2s linear ease-in-out;
+  }
