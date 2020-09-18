@@ -1,20 +1,24 @@
 import React from 'react';
 import logo from '../images/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-function Header({ loggedIn, email, onLogOut, loginState, handleLoginState }) {
+function Header({ loggedIn, loggedInEmail, signOut, loginState, handleLoginState }) {
+    const { pathname } = useLocation();
+    const linkText = `${pathname === '/sign-in' ? 'Регистрация' : 'Войти'}`;
+    const linkPath = `${pathname === '/sign-up' ? '/sign-in' : '/sign-up'}`;
+    const Email = `${loggedIn === true ? loggedInEmail : ''}`;
+   
+
     return (
         <header className="header">
             <img className="logo" src={logo} alt="лого" />
             <nav className='header__nav'>
                 {loggedIn ?
                     <>
-                        <p className="header__email">{email}</p>
-                        <Link className="header__link header__link_logged" to="/sign-in" onClick={onLogOut}>Выйти</Link>
+                        <p className="header__email">{Email}</p>
+                        <Link className="header__link header__link_logged" to="/sign-up" onClick={signOut}>Выйти</Link>
                     </>
-                    : <Link className="header__link" to={loginState ? "/sign-up" : "/sign-in"} onClick={handleLoginState}>
-                        {loginState ? "Регистрация" : "Войти"}
-                    </Link>}
+                    : <Link to={linkPath} className="link header__link" onClick={handleLoginState}>{linkText}</Link>}
             </nav>
         </header>
     );

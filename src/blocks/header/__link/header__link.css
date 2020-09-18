@@ -20,7 +20,7 @@
   
   @media screen and (max-width: 424px) {
     .header__link {
-      font-size: 0.875rem;
-      line-height: 1.0625rem;
+      font-size: 18px;
+      line-height: 22px;
     }
   }

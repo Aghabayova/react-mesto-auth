@@ -32,7 +32,7 @@ function App() {
     link: ''
   });
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [email, setEmail] = React.useState('');
+  const [email, setEmail] = React.useState(null);
   //const [loggedInEmail, setLoggedInEmail] = React.useState('');
   const [loginState, setLoginState] = React.useState(true);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
@@ -49,19 +49,23 @@ function App() {
       // проверим токен
       auth.getContent(jwt).then((res) => {
         if (res) {
+          //setLoggedIn(true);
           setEmail({
-            id: res.data._id,
             email: res.data.email
           });
           setLoggedIn(true);
           history.push('/');
         }
       })
-        .catch((err) => { console.log(err) })
+        .catch((err) => { 
+          console.log(err);
+          history.push('/sign-in');
+        })
     }
   }
 
   // Проверить токен
+  /*
   React.useEffect(() => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
@@ -74,27 +78,29 @@ function App() {
         .catch(err => console.log(err));
     }
   }, [history]);
-
+*/
   // Регистрация
   function handleRegister({ email, password }) {
     setIsLoading(true);
     return auth.register(email, password)
       .then((res) => {
         setIsLoading(false);
-        if (res) {
-          return true;
-        } else {
-          throw new Error('некорректно заполнено одно из полей');
-        }
-      })
-
+        if (res.ok) {
+          return res.json();
+      } else {
+          return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      }
+  });
   }
+  
   function handleLogin({ email, password }) {
     setIsLoading(true);
     return auth.authorise(email, password)
       .then((res) => {
         if (res && res.token) {
-          setLoggedIn(true);
+          console.log('2');
+          //setLoggedIn(true);
+          localStorage.setItem('jwt', res.token);
           tokenCheck();
         }
       })
