@@ -32,7 +32,7 @@ function App() {
     link: ''
   });
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [email, setEmail] = React.useState(null);
+  const [email, setEmail] = React.useState('');
   //const [loggedInEmail, setLoggedInEmail] = React.useState('');
   const [loginState, setLoginState] = React.useState(true);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
@@ -57,7 +57,7 @@ function App() {
           history.push('/');
         }
       })
-        .catch((err) => { 
+        .catch((err) => {
           console.log(err);
           history.push('/sign-in');
         })
@@ -65,41 +65,31 @@ function App() {
   }
 
   // Проверить токен
-  /*
   React.useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      auth.getContent(jwt)
-        .then((res) => {
-          setLoggedIn(true);
-          setEmail(res.data.email);
-          history.push('/');
-        })
-        .catch(err => console.log(err));
-    }
+    tokenCheck();
   }, [history]);
-*/
+
   // Регистрация
   function handleRegister({ email, password }) {
     setIsLoading(true);
     return auth.register(email, password)
-      .then((res) => {
-        setIsLoading(false);
-        if (res.ok) {
-          return res.json();
-      } else {
-          return Promise.reject(`Что-то пошло не так: ${res.status}`);
-      }
-  });
+
+      .then(res => {
+        if (res) {
+          //return res.json();
+          handleRegisterSuccess(true);
+        } else {
+          handleRegisterSuccess(false);
+          //return Promise.reject(`Что-то пошло не так: ${res.status}`);
+        }
+      });
   }
-  
+
   function handleLogin({ email, password }) {
     setIsLoading(true);
     return auth.authorise(email, password)
       .then((res) => {
         if (res && res.token) {
-          console.log('2');
-          //setLoggedIn(true);
           localStorage.setItem('jwt', res.token);
           tokenCheck();
         }
@@ -243,7 +233,7 @@ function App() {
 
       <div className="page">
         <Header
-          loggedInEmail={email}
+          loggedInEmail={email.email}
           loginState={loginState}
           loggedIn={loggedIn}
           signOut={handleLogOut}

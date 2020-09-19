@@ -5,9 +5,7 @@ import { Link, withRouter, useHistory } from 'react-router-dom';
 
 function Register({ onRegister, onConfirm }) {
   const [email, setEmail] = React.useState('');
-
   const [password, setPassword] = React.useState('');
-  //const [errorMessage, setErrorMessage] = React.useState('');
   const history = useHistory();
 
   const emailRef = React.useRef();
@@ -35,42 +33,42 @@ function Register({ onRegister, onConfirm }) {
       });
   }
 
-return (
-  <div className="auth">
-    <p className="auth__heading">Регистрация</p>
-    <form onSubmit={handleSubmit} className="auth__form">
-      <input
-        className="auth__input"
-        onChange={handleChange}
-        id="email"
-        placeholder="Email"
-        value={email || ''}
-        type="email"
-        name="email"
-        minLength='6'
-        maxLength="40"
-        required 
-        ref={emailRef}/>
+  return (
+    <div className="auth">
+      <p className="auth__heading">Регистрация</p>
+      <form onSubmit={handleSubmit} className="auth__form">
+        <input
+          className="auth__input"
+          onChange={handleChange}
+          id="email"
+          placeholder="Email"
+          value={email}
+          type="email"
+          name="email"
+          minLength='6'
+          maxLength="40"
+          required
+          ref={emailRef} />
 
-      <input
-        className="auth__input"
-        onChange={handleChange}
-        id="password"
-        placeholder="Пароль"
-        type="password"
-        value={password || ''}
-        name="password"
-        maxLength="40"
-        required 
-        ref={passwordRef}/>
+        <input
+          className="auth__input"
+          onChange={handleChange}
+          id="password"
+          placeholder="Пароль"
+          type="password"
+          value={password}
+          name="password"
+          maxLength="40"
+          required
+          ref={passwordRef} />
 
-      <button className="auth__submit-btn" type="submit" onSubmit={handleSubmit}>Зарегистрироваться</button>
-    </form>
-    <div className="auth__entry">
-      <Link to="/login" className="auth__login-link">Уже зарегистрированы? Войти</Link>
+        <button className="auth__submit-btn" type="submit" onSubmit={handleSubmit}>Зарегистрироваться</button>
+      </form>
+      <div className="auth__entry">
+        <Link to="/login" className="auth__login-link">Уже зарегистрированы? Войти</Link>
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default withRouter(Register);

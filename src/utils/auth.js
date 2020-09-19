@@ -48,14 +48,13 @@ export const register = (email, password) => {
     },
     body: JSON.stringify({ email, password })
   })
-  .then(res => {
-    console.log('ok');
-    if (res.ok) {
+    .then(res => {
+      if (res.ok) {
         return res.json();
-    } else {
+      } else {
         return Promise.reject(`Что-то пошло не так: ${res.status}`);
-    }
-});
+      }
+    });
 }
 
 export const checkToken = (token) => {
