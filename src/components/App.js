@@ -239,6 +239,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
 
+      <div className="mobile"></div>
       <div className="page">
         <Header
           loggedInEmail={email.email}

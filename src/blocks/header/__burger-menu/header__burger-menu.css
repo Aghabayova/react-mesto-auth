@@ -1,3 +1,10 @@
 .header__burger-menu {
-    width: 100%;
+    width: 20px;
+    cursor: pointer; 
+    transition: opacity .2s ease-out;
 }
+
+.header__burger-menu:hover{
+    opacity: 0.6;
+}
+

@@ -7,3 +7,9 @@
     
    
 }
+
+@media (max-width: 750px) {
+    .header__email {
+        display: none;
+    }
+}

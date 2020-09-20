@@ -12,10 +12,7 @@ function Header({ loggedIn, loggedInEmail, signOut, handleLoginState, menuState,
     
 
     return (
-        <header className={(isMobile ? "header mobile" : "header")}>
-            
-       
-
+        <header className={(isMobile ? "header " : "header")}>
             <img className="logo" src={logo} alt="лого" />
            
             <nav className={(isMobile ? "header__nav active" : "header__nav")}>
@@ -27,9 +24,9 @@ function Header({ loggedIn, loggedInEmail, signOut, handleLoginState, menuState,
                     : <Link to={linkPath} className="link header__link" onClick={handleLoginState}>{textPath}</Link>}
             </nav>
 
-            <a href="#" className="header__burger" onClick={menuState} onClose={onClose}>
+            <button className="header__burger" onClick={menuState} onClose={onClose}>
                 <img className="header__burger-menu" src={isMobile ? closeMenu : mobileMenu} alt="" />
-            </a>
+            </button>
         </header>
     );
 }
