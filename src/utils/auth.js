@@ -56,7 +56,7 @@ export const register = (email, password) => {
       }
     });
 }
-
+/*
 export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
@@ -69,7 +69,7 @@ export const checkToken = (token) => {
     .then(res => res.json())
     .then(data => data)
 }
-
+*/
 export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
