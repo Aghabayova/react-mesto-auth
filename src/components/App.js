@@ -15,7 +15,8 @@ import Register from './Register.js';
 import Login from './Login';
 import ProtectedRoute from './ProtectedRoute';
 import InfoTooltip from './InfoTooltip';
-import escapeHTML from 'escape-html';
+import MobileMenu from './MobileMenu';
+
 
 function App() {
 
@@ -34,18 +35,18 @@ function App() {
   });
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState('');
-  //const [loggedInEmail, setLoggedInEmail] = React.useState('');
   const [loginState, setLoginState] = React.useState(true);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
   const [isRegisterSuccess, setIsRegisterSuccess] = React.useState(false);
   const [isMobile, setisMobile] = React.useState(false);
+  
 
   const history = useHistory();
-  const escape = require('escape-html')
+  const escape = require('escape-html');
 
+  
   function mobileMenuToggle(){
     isMobile ? setisMobile(false) : setisMobile(true);
-    
   }
 
   // Записать токен
@@ -92,7 +93,7 @@ function App() {
         }
       });
   }
-
+  //обработчик входа на страницу
   function handleLogin({ email, password }) {
     setIsLoading(true);
     return auth.authorise(email, escape(password))
@@ -109,13 +110,13 @@ function App() {
         setIsLoading(false);
       })
   }
-
+  // обработчик выхода со страницы
   function handleLogOut() {
     setLoggedIn(false);
     localStorage.removeItem('jwt');
     history.push('/sign-in');
   }
-
+  //проверка статуса логина
   function handleloginState() {
     setLoginState(false);
   }
@@ -132,13 +133,10 @@ function App() {
 
   }, []);
 
-
   function handleRegisterSuccess(state) {
     setIsInfoTooltipPopupOpen(true);
     setIsRegisterSuccess(state);
-
   }
-
 
   //обработчики открытия попапов
   function handleEditAvatarClick() {
@@ -239,7 +237,15 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
 
-      <div className="mobile"></div>
+      <MobileMenu 
+      menuState={mobileMenuToggle}
+      loggedInEmail={email.email}
+      loginState={loginState}
+      loggedIn={loggedIn}
+      signOut={handleLogOut}
+      handleloginState={handleloginState} 
+      isMobile={isMobile}
+      />
       <div className="page">
         <Header
           loggedInEmail={email.email}
@@ -248,7 +254,7 @@ function App() {
           signOut={handleLogOut}
           handleloginState={handleloginState} 
           isMobile={isMobile}
-          menuState={mobileMenuToggle}/>
+          onMenuClick={mobileMenuToggle}/>
         <Switch>
           <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}
             onEditProfile={handleEditProfileClick}

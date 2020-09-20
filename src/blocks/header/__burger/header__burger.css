@@ -1,6 +1,7 @@
 .header__burger {
     display: none;
 }
+
 @media (max-width: 750px) {
     .header__burger {
         display: block;
@@ -11,8 +12,9 @@
         background-color: black;
         outline: none;
         border: none;
-    }    
+    }
 }
-.header__burger:hover{
+
+.header__burger:hover {
     opacity: 0.6;
 }

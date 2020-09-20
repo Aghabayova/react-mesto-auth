@@ -13,3 +13,4 @@
 @import url(./blocks/content/content.css);
 @import url(./blocks/auth/auth.css);
 @import url(./blocks/mobile/mobile.css);
+@import url(./blocks/mobile/_inactive/mobile_inactive.css);

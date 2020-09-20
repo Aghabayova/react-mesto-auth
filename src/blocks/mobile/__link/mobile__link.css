@@ -1,0 +1,12 @@
+.mobile__link {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.mobile__link:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
