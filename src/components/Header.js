@@ -14,19 +14,18 @@ function Header({ loggedIn, loggedInEmail, signOut, handleLoginState, isMobile, 
     return (
         <header className='header'>
             <img className="logo" src={logo} alt="лого" />
-
-            <nav className="header__nav">
-                {loggedIn ?
-                    <>
-                        <p className="header__email">{loggedInEmail}</p>
-                        <Link className="header__link header__link_logged" to="/sign-in" onClick={signOut}>Выйти</Link>
-                    </>
-                    : <Link to={linkPath} className="link header__link" onClick={handleLoginState}>{textPath}</Link>}
-            </nav>
-
-            <button className="header__burger" onClick={onMenuClick} >
-                <img className="header__burger-menu" src={isMobile ? closeIcon : openIcon} alt="" />
-            </button>
+            {loggedIn ?
+                (<button className="header__burger" onClick={onMenuClick} >
+                    <img className="header__burger-menu" src={isMobile ? closeIcon : openIcon} alt="" />
+                </button>) :
+                (<nav className="header__nav">
+                    {loggedIn ?
+                        <>
+                            <p className="header__email">{loggedInEmail}</p>
+                            <Link className="header__link" to="/sign-in" onClick={signOut}>Выйти</Link>
+                        </>
+                        : <Link to={linkPath} className="header__link" onClick={handleLoginState}>{textPath}</Link>}
+                </nav>)}
         </header>
     );
 }

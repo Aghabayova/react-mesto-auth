@@ -3,7 +3,7 @@ import success from '../images/register-success.svg';
 import error from '../images/register-error.svg';
 
 function InfoTooltip({ onClose, isOpen, isRegisterSuccess }) {
-  console.log(isRegisterSuccess);
+  
   return (
 
     <section className={(isOpen ? 'popup popup_opened' : 'popup')}>

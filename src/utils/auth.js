@@ -12,8 +12,6 @@ export const authorise = (email, password) => {
     .then((res) => {
       try {
         if (res.status === 200) {
-          console.log('1');
-          console.log(res.status);
           return res.json();
         }
         if (res.status === 400) {
@@ -25,7 +23,6 @@ export const authorise = (email, password) => {
       }
       catch (e) {
         console.log(e);
-        return e;
       }
     })
     .then((data) => {

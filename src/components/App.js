@@ -39,13 +39,13 @@ function App() {
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = React.useState(false);
   const [isRegisterSuccess, setIsRegisterSuccess] = React.useState(false);
   const [isMobile, setisMobile] = React.useState(false);
-  
+
 
   const history = useHistory();
   const escape = require('escape-html');
 
-  
-  function mobileMenuToggle(){
+
+  function mobileMenuToggle() {
     isMobile ? setisMobile(false) : setisMobile(true);
   }
 
@@ -82,14 +82,11 @@ function App() {
   function handleRegister({ email, password }) {
     setIsLoading(true);
     return auth.register(email, escape(password))
-
       .then(res => {
         if (res) {
-          //return res.json();
           handleRegisterSuccess(true);
         } else {
           handleRegisterSuccess(false);
-          //return Promise.reject(`Что-то пошло не так: ${res.status}`);
         }
       });
   }
@@ -237,14 +234,14 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
 
-      <MobileMenu 
-      menuState={mobileMenuToggle}
-      loggedInEmail={email.email}
-      loginState={loginState}
-      loggedIn={loggedIn}
-      signOut={handleLogOut}
-      handleloginState={handleloginState} 
-      isMobile={isMobile}
+      <MobileMenu
+        menuState={mobileMenuToggle}
+        loggedInEmail={email.email}
+        loginState={loginState}
+        loggedIn={loggedIn}
+        signOut={handleLogOut}
+        handleloginState={handleloginState}
+        isMobile={isMobile}
       />
       <div className="page">
         <Header
@@ -252,9 +249,9 @@ function App() {
           loginState={loginState}
           loggedIn={loggedIn}
           signOut={handleLogOut}
-          handleloginState={handleloginState} 
+          handleloginState={handleloginState}
           isMobile={isMobile}
-          onMenuClick={mobileMenuToggle}/>
+          onMenuClick={mobileMenuToggle} />
         <Switch>
           <ProtectedRoute exact path="/" loggedIn={loggedIn} component={Main}
             onEditProfile={handleEditProfileClick}
