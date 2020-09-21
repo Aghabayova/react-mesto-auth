@@ -3,11 +3,4 @@
    flex-direction: column;
    width: 358px;
    max-width: 80%;
-
-}
-@media screen and(max-width: 374px) {
-   .auth__form{
-       width: 240px;
-       max-height: 251px;
-   }
 }

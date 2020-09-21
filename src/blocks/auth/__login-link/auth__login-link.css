@@ -6,10 +6,17 @@
     outline: none;
     border: none;
     text-decoration: none;
-    
+
 }
 
 .auth__login-link:hover {
     cursor: pointer;
     opacity: 0.6;
+}
+
+@media screen and (max-width: 375px) {
+    .auth__login-link {
+        font-size: 12px;
+        line-height: 15px;
+    }
 }

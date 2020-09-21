@@ -1,5 +1,5 @@
 .auth__submit-btn {
-  
+
   background-color: #fff;
   border-radius: 2px;
   min-height: 50px;
@@ -12,7 +12,7 @@
   width: 100%;
   margin-top: 216px;
   margin-bottom: 15px;
-  transition: background-color .2s;
+  transition: opacity linear 0.1s;
 }
 
 .auth__submit-btn:hover {
