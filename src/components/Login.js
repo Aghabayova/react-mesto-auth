@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, withRouter, useHistory } from 'react-router-dom';
 
 
-
 function Login({ onLogin }) {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -11,6 +10,7 @@ function Login({ onLogin }) {
 
     function handleChange(e) {
         const { value } = e.target;
+        
         e.target.name === 'email'
           ? setEmail(value)
           : setPassword(value);

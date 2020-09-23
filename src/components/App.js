@@ -245,7 +245,7 @@ function App() {
       />
       <div className="page">
         <Header
-          loggedInEmail={email.email}
+          loggedInEmail={email.email} 
           loginState={loginState}
           loggedIn={loggedIn}
           signOut={handleLogOut}

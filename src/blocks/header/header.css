@@ -3,7 +3,7 @@
 @import url(__nav/header__nav.css);
 @import url(__burger/header__burger.css);
 @import url(__burger-menu/header__burger-menu.css);
-
+@import url(__link-mobile/header__link-mobile.css);
 
 .header {
     max-width: 882px;
